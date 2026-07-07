@@ -9,7 +9,7 @@ A lightweight Node.js application that streams live gold prices to connected bro
 - Server‑Sent Events (SSE) streaming live gold prices every 3 seconds.
 - Simple REST endpoint `POST /buy` to record a purchase.
 - PDF receipt generation using **pdfkit**.
-- Email delivery with **nodemailer** (Gmail SMTP).
+- Email delivery with **nodemailer** using **Brevo (Sendinblue)** SMTP Relay.
 - Transaction status tracking (`emailStatus`).
 - Automatic restart on `.env` changes thanks to `nodemon -e js,json,env`.
 
@@ -42,10 +42,11 @@ gold-price-tracker/
    ```
 3. **Create a `.env` file** (do **not** commit it):
    ```env
-   EMAIL_USER="your‑gmail‑address@gmail.com"
-   EMAIL_PASS="your‑app‑password"
+   BREVO_SMTP_USER="your_brevo_login@smtp-brevo.com"
+   BREVO_SMTP_KEY="your_generated_smtp_key"
+   BREVO_SENDER="your_verified_email@example.com"
    ```
-   > Use an **App Password** if you have 2‑FA enabled on Gmail.
+   > You can get your SMTP credentials and generate an SMTP key from your Brevo dashboard under **Settings → SMTP & API → SMTP**.
 4. **Start the development server**:
    ```bash
    npm run dev
