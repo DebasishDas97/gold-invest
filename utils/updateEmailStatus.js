@@ -5,7 +5,7 @@ export async function updateEmailStatus(id, status) {
     const filePath = path.join(import.meta.dirname, '..', 'data', 'data.json')
     try {
         const fileContent = await fs.readFile(filePath, 'utf-8')
-        const data = JSON.parse(fileContent)
+        const data = fileContent.trim() ? JSON.parse(fileContent) : []
         const updatedData = data.map(item => item.id === id ? { ...item, emailStatus: status } : item)
         await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), 'utf-8')
     } catch (err) {
