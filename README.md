@@ -60,7 +60,7 @@ gold-price-tracker/
   ```bash
   curl -X POST http://localhost:8000/buy \
        -H "Content-Type: application/json" \
-       -d '{"email":"you@example.com","quantity":2,"price":1800}'
+       -d '{"email":"you@example.com","quantity":"0.67g","price":"Rs. 5000"}'
   ```
 - The response contains the saved transaction, initially with `"emailStatus":"pending"`.
 - After the email attempt completes, the status updates to `"success"` or `"failed"` inside `data/data.json`.

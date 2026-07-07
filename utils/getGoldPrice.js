@@ -1,8 +1,8 @@
-let goldPrice = 28450.23; // Initial price (₹ per 10g)
+let goldPrice = 7450.25; // Initial price (₹ in INR per gram of 24K Gold)
 
 export function getGoldPrice() {
-  // Random change between -25 and +25
-  const change = Math.floor(Math.random() * 51) - 25.27;
+  // Random fluctuation between -15 and +15 INR
+  const change = (Math.random() * 30) - 15;
 
   goldPrice += change;
 

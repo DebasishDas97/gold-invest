@@ -34,10 +34,14 @@ form.addEventListener('submit', async (e) => {
     const formObj = Object.fromEntries(formData)
 
     if (investedAmount.value > 0) {
+        const pricePerGram = parseFloat(goldPriceElement.textContent);
+        const investedMoney = parseFloat(investedAmount.value);
+        const calculatedQuantity = (investedMoney / pricePerGram).toFixed(4);
+
         const buyingData = {
             email: `${formObj.email}`,
-            price: `${goldPriceElement.textContent}£`,
-            quantity: `${formObj.investedAmount}oz`
+            price: `Rs. ${investedMoney.toFixed(2)}`,
+            quantity: `${calculatedQuantity}g`
         }
 
         try {
@@ -50,7 +54,7 @@ form.addEventListener('submit', async (e) => {
                 throw new Error('Server fail')
             } else {
                 dialog.showModal()
-                investmentSummary.innerHTML = `You just bought ${investedAmount.value} ounces (ozt) for £${(investedAmount.value / goldPriceElement.textContent).toFixed(2)}. \n You will receive documentation shortly in your email.`
+                investmentSummary.innerHTML = `You just invested <b>₹${investedMoney.toLocaleString('en-IN')}</b> and bought <b>${calculatedQuantity}g</b> of 24K Gold! <br><br> You will receive your PDF receipt shortly in your email.`
                 investedAmount.value = ''
                 form.reset()
             }
