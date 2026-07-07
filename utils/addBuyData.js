@@ -3,6 +3,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 export async function addBuyData(data, dir) {
     const filePath = path.join(dir, 'data', 'data.json')
+    await fs.mkdir(path.dirname(filePath), { recursive: true })
     let existingData = []
     try {
         const fileContent = await fs.readFile(filePath, 'utf-8')
