@@ -4,8 +4,9 @@ import { updateEmailStatus } from './updateEmailStatus.js';
 // 1️⃣ Configure the Brevo SMTP Transporter
 const transporter = nodemailer.createTransport({
   host: 'smtp-relay.brevo.com',
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  connectionTimeout: 10000, // 10 seconds timeout instead of hanging for 2 minutes
   auth: {
     user: process.env.BREVO_SMTP_USER,
     pass: process.env.BREVO_SMTP_KEY,
